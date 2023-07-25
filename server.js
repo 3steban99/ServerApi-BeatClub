@@ -53,6 +53,17 @@ app.get('/Productos/vino', (req, res)=>{
     })
 })
 
+app.get('/Productos/espumante', (req, res)=>{
+    req.getConnection((err, conn)=>{
+        if(err) return res.send(err)
+
+        conn.query('SELECT * FROM productos WHERE categoria_id = 2', (err, rows)=>{
+            if(err) return res.send(err)
+            res.json(rows)
+        })
+    })
+})
+
 
 app.listen(app.get('port'), ()=>{
     console.log('server corriendo en el puerto', app.get('port'))
