@@ -27,8 +27,9 @@ app.get('/', (req, res)=>{
 });
 
 
+//ruta para todos los productos del menu
 
-app.get('/Productos', (req, res)=>{
+app.get('/Productos/', (req, res)=>{
     req.getConnection((err, conn)=>{
         if(err) return res.send(err)
 
@@ -38,6 +39,20 @@ app.get('/Productos', (req, res)=>{
         })
     })
 })
+
+//ruta para la categoria vino
+
+app.get('/Productos/vino', (req, res)=>{
+    req.getConnection((err, conn)=>{
+        if(err) return res.send(err)
+
+        conn.query('SELECT * FROM productos WHERE categoria_id = 1', (err, rows)=>{
+            if(err) return res.send(err)
+            res.json(rows)
+        })
+    })
+})
+
 
 app.listen(app.get('port'), ()=>{
     console.log('server corriendo en el puerto', app.get('port'))
