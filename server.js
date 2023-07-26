@@ -65,6 +65,31 @@ app.get('/Productos/espumante', (req, res)=>{
 })
 
 
+
+//ruta para verificar cuenta
+
+app.post('/api/login', (req, res)=>{
+    const {username, password} = req.body
+    const values = [username, password]
+
+    req.getConnection((err, conn)=>{
+        if(err) return res.send(err)
+
+        conn.query('SELECT * FROM usuarios WHERE username = ? AND password= ?', values, (err, result)=>{
+            if(err) {
+                res.status(500).send(err)
+            }else{
+                if(result.length > 0){
+                    res.status(200).send(result[0])
+                }else{
+                    res.status(400).send("Usuario no existe")
+                }
+            }
+        })
+    })
+})
+
+
 app.listen(app.get('port'), ()=>{
     console.log('server corriendo en el puerto', app.get('port'))
 })
