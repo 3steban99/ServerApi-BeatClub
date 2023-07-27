@@ -77,8 +77,10 @@ app.post('/api/login', (req, res)=>{
 
         conn.query('SELECT * FROM usuarios WHERE username = ? AND password= ?', values, (err, result)=>{
             if(err) {
+                console.log('Error en la consulta', err)
                 res.status(500).send(err)
             }else{
+                console.log('Resultados de la consulta:', result)
                 if(result.length > 0){
                     res.status(200).send("Usuario correcto")
                 }else{
