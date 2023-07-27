@@ -80,9 +80,7 @@ app.post('/api/login', (req, res)=>{
                 res.status(500).send(err)
             }else{
                 if(result.length > 0){
-                    res.status(200).send({
-                        "username": result[0].username
-                    })
+                    res.status(200).send("Usuario correcto")
                 }else{
                     res.status(400).send("Usuario no existe")
                 }
