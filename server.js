@@ -66,6 +66,20 @@ app.get('/Productos/espumante', (req, res)=>{
 
 
 
+//ruta de categorias
+
+app.get('/Categorias', (req, res)=>{
+    req.getConnection((err, conn)=>{
+        if(err) return res.send(err)
+
+        conn.query('SELECT * FROM categorias', (err, rows)=>{
+            if(err) return res.send(err)
+            res.json(rows)
+        })
+    })
+})
+
+
 //ruta para verificar cuenta
 
 app.post('/api/login', (req, res)=>{
