@@ -95,6 +95,20 @@ app.delete('/Productos/:id', (req, res)=>{
 })
 
 
+//ruta para crear un producto
+
+app.post('/Productos', (req, res)=>{
+    req.getConnection((err, conn)=>{
+        if(err) return res.send(err)
+
+        conn.query('INSERT INTO productos set ?', [req.body],(err, rows)=>{
+            if(err) return res.send(err)
+
+            res.send(rows)
+        })
+    })
+})
+
 //ruta para verificar cuenta
 
 app.post('/api/login', (req, res)=>{
