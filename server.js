@@ -80,6 +80,21 @@ app.get('/Categorias', (req, res)=>{
 })
 
 
+//ruta para borrar un producto
+
+app.delete('/Productos/:id', (req, res)=>{
+    req.getConnection((err, conn)=>{
+        if(err) return res.send(err)
+
+        conn.query('DELETE FROM productos WHERE producto_id = ?', [req.params.id],(err, rows)=>{
+            if(err) return res.send(err)
+
+            res.send(rows)
+        })
+    })
+})
+
+
 //ruta para verificar cuenta
 
 app.post('/api/login', (req, res)=>{
