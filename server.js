@@ -68,6 +68,165 @@ app.get('/Productos/espumante', (req, res) => {
     })
 })
 
+//ruta categoria promo
+app.get('/Productos/promociones', (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) return res.send(err)
+
+        conn.query('SELECT * FROM productos WHERE categoria_id = 3', (err, rows) => {
+            if (err) return res.send(err)
+            res.json(rows)
+        })
+    })
+})
+
+//ruta categoria tragos
+app.get('/Productos/tragos', (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) return res.send(err)
+
+        conn.query('SELECT * FROM productos WHERE categoria_id = 4', (err, rows) => {
+            if (err) return res.send(err)
+            res.json(rows)
+        })
+    })
+})
+
+//ruta categoria Forever young
+app.get('/Productos/Forever-young', (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) return res.send(err)
+
+        conn.query('SELECT * FROM productos WHERE categoria_id = 5', (err, rows) => {
+            if (err) return res.send(err)
+            res.json(rows)
+        })
+    })
+})
+
+//ruta categoria its time for gin
+app.get('/Productos/its-time-for-gin', (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) return res.send(err)
+
+        conn.query('SELECT * FROM productos WHERE categoria_id = 6', (err, rows) => {
+            if (err) return res.send(err)
+            res.json(rows)
+        })
+    })
+})
+
+//ruta categoria we love ron
+app.get('/Productos/we-love-ron', (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) return res.send(err)
+
+        conn.query('SELECT * FROM productos WHERE categoria_id = 7', (err, rows) => {
+            if (err) return res.send(err)
+            res.json(rows)
+        })
+    })
+})
+
+
+//ruta categoria speakeasy licor scotch
+app.get('/Productos/speakeasy-licor-scotch', (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) return res.send(err)
+
+        conn.query('SELECT * FROM productos WHERE categoria_id = 8', (err, rows) => {
+            if (err) return res.send(err)
+            res.json(rows)
+        })
+    })
+})
+
+
+//ruta categoria Irish
+app.get('/Productos/Irish', (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) return res.send(err)
+
+        conn.query('SELECT * FROM productos WHERE categoria_id = 9', (err, rows) => {
+            if (err) return res.send(err)
+            res.json(rows)
+        })
+    })
+})
+
+//ruta categoria Bebidas
+app.get('/Productos/Bebidas', (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) return res.send(err)
+
+        conn.query('SELECT * FROM productos WHERE categoria_id = 11', (err, rows) => {
+            if (err) return res.send(err)
+            res.json(rows)
+        })
+    })
+})
+
+//ruta categoria Picadas
+app.get('/Productos/Picadas', (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) return res.send(err)
+
+        conn.query('SELECT * FROM productos WHERE categoria_id = 12', (err, rows) => {
+            if (err) return res.send(err)
+            res.json(rows)
+        })
+    })
+})
+
+
+//ruta categoria Sandiwches
+app.get('/Productos/Sandiwches', (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) return res.send(err)
+
+        conn.query('SELECT * FROM productos WHERE categoria_id = 13', (err, rows) => {
+            if (err) return res.send(err)
+            res.json(rows)
+        })
+    })
+})
+
+//ruta categoria Ensaladas
+app.get('/Productos/Ensaladas', (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) return res.send(err)
+
+        conn.query('SELECT * FROM productos WHERE categoria_id = 14', (err, rows) => {
+            if (err) return res.send(err)
+            res.json(rows)
+        })
+    })
+})
+
+//ruta categoria Burguers
+app.get('/Productos/Burguers', (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) return res.send(err)
+
+        conn.query('SELECT * FROM productos WHERE categoria_id = 15', (err, rows) => {
+            if (err) return res.send(err)
+            res.json(rows)
+        })
+    })
+})
+
+//ruta categoria Postres
+app.get('/Productos/Postres', (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) return res.send(err)
+
+        conn.query('SELECT * FROM productos WHERE categoria_id = 16', (err, rows) => {
+            if (err) return res.send(err)
+            res.json(rows)
+        })
+    })
+})
+
 
 
 //ruta de categorias
