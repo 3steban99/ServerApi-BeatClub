@@ -121,7 +121,7 @@ app.put('/Productos/:id', (req, res) => {
     req.getConnection((err, conn) => {
         if (err) return res.send(err)
 
-        conn.query('UPDATE productos set ? WHERE id = ?', [req.body, req.params.id], (err, rows) => {
+        conn.query('UPDATE productos set ? WHERE producto_id = ?', [req.body, req.params.id], (err, rows) => {
             if (err) return res.send(err)
 
             res.send(rows)
