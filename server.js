@@ -33,7 +33,7 @@ app.get('/Productos', (req, res)=>{
     req.getConnection((err, conn)=>{
         if(err) return res.send(err)
 
-        conn.query('SELECT p.producto_id, p.nombre, p.precio, p.descripcion, c.nombre AS categoria_nombre FROM productos p LEFT JOIN categorias c ON p.categoria_id = c.categoria_id', (err, rows)=>{
+        conn.query('SELECT p.producto_id, p.nombre, p.precio, p.descripcion, c.nombre AS categoria_nombre FROM productos p LEFT JOIN categorias c ON p.categoria_id = c.categoria_id ORDER BY c.categoria_id', (err, rows)=>{
             if(err) return res.send(err)
             res.json(rows)
         })
