@@ -154,6 +154,18 @@ app.get('/Productos/Irish', (req, res) => {
     })
 })
 
+//ruta categoria American
+app.get('/Productos/American', (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) return res.send(err)
+
+        conn.query('SELECT * FROM productos WHERE categoria_id = 10', (err, rows) => {
+            if (err) return res.send(err)
+            res.json(rows)
+        })
+    })
+})
+
 //ruta categoria Bebidas
 app.get('/Productos/Bebidas', (req, res) => {
     req.getConnection((err, conn) => {
