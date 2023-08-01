@@ -191,8 +191,8 @@ app.get('/Productos/Picadas', (req, res) => {
 })
 
 
-//ruta categoria Sandiwches
-app.get('/Productos/Sandiwches', (req, res) => {
+//ruta categoria Sandwiches
+app.get('/Productos/Sandwiches', (req, res) => {
     req.getConnection((err, conn) => {
         if (err) return res.send(err)
 
@@ -215,8 +215,8 @@ app.get('/Productos/Ensaladas', (req, res) => {
     })
 })
 
-//ruta categoria Burguers
-app.get('/Productos/Burguers', (req, res) => {
+//ruta categoria Burgers
+app.get('/Productos/Burgers', (req, res) => {
     req.getConnection((err, conn) => {
         if (err) return res.send(err)
 
