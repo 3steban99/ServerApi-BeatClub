@@ -300,7 +300,33 @@ app.put('/Productos/:id', (req, res) => {
     })
 })
 
+//RUTA DE EVENTOS
 
+//ruta para ver eventos pasados
+
+app.get('/Eventos/Pasados', (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) return res.send(err)
+
+        conn.query('SELECT * FROM eventos WHERE es_proximo=0', (err, rows) => {
+            if (err) return res.send(err)
+            res.json(rows)
+        })
+    })
+})
+
+//ruta para ver eventos futuros
+
+app.get('/Eventos/Futuros', (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) return res.send(err)
+
+        conn.query('SELECT * FROM eventos WHERE es_proximo=1', (err, rows) => {
+            if (err) return res.send(err)
+            res.json(rows)
+        })
+    })
+})
 
 //RUTA PARA VERIFICAR CUENTA
 
