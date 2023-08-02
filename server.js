@@ -375,6 +375,21 @@ app.delete('/Eventos/:id', (req, res) => {
     })
 })
 
+
+//ruta para crear un evento
+
+app.post('/Eventos', (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) return res.send(err)
+
+        conn.query('INSERT INTO eventos set ?', [req.body], (err, rows) => {
+            if (err) return res.send(err)
+
+            res.send(rows)
+        })
+    })
+})
+
 //RUTA PARA VERIFICAR CUENTA
 
 app.post('/api/login', (req, res) => {
