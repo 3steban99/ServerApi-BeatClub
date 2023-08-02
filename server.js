@@ -328,6 +328,8 @@ app.get('/Eventos/Futuros', (req, res) => {
     })
 })
 
+//ruta automatica para cambiar el estado es_proximo
+
 app.patch('/Eventos', (req, res) => {
     const eventosActualizados = req.body;
     if (!Array.isArray(eventosActualizados)) {
@@ -359,8 +361,19 @@ app.patch('/Eventos', (req, res) => {
         });
 });
 
+// Ruta para borrar un evento
 
+app.delete('/Eventos/:id', (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) return res.send(err)
 
+        conn.query('DELETE FROM eventos WHERE evento_id = ?', [req.params.id], (err, rows) => {
+            if (err) return res.send(err)
+
+            res.send(rows)
+        })
+    })
+})
 
 //RUTA PARA VERIFICAR CUENTA
 
