@@ -308,7 +308,7 @@ app.get('/Eventos/Pasados', (req, res) => {
     req.getConnection((err, conn) => {
         if (err) return res.send(err)
 
-        conn.query('SELECT * FROM eventos WHERE es_proximo=0', (err, rows) => {
+        conn.query('SELECT * FROM eventos WHERE es_proximo=0 order by fecha_evento DESC', (err, rows) => {
             if (err) return res.send(err)
             res.json(rows)
         })
@@ -321,12 +321,15 @@ app.get('/Eventos/Futuros', (req, res) => {
     req.getConnection((err, conn) => {
         if (err) return res.send(err)
 
-        conn.query('SELECT * FROM eventos WHERE es_proximo=1', (err, rows) => {
+        conn.query('SELECT * FROM eventos WHERE es_proximo=1 order by fecha_evento', (err, rows) => {
             if (err) return res.send(err)
             res.json(rows)
         })
     })
 })
+
+
+
 
 //RUTA PARA VERIFICAR CUENTA
 
