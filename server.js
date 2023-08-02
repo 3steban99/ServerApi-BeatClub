@@ -390,6 +390,20 @@ app.post('/Eventos', (req, res) => {
     })
 })
 
+//ruta para modificar un evento
+
+app.put('/Eventos/:id', (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) return res.send(err)
+
+        conn.query('UPDATE eventos set ? WHERE evento_id = ?', [req.body, req.params.id], (err, rows) => {
+            if (err) return res.send(err)
+
+            res.send(rows)
+        })
+    })
+})
+
 //RUTA PARA VERIFICAR CUENTA
 
 app.post('/api/login', (req, res) => {
