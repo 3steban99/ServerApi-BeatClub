@@ -328,6 +328,37 @@ app.get('/Eventos/Futuros', (req, res) => {
     })
 })
 
+app.patch('/Eventos', (req, res) => {
+    const eventosActualizados = req.body;
+    if (!Array.isArray(eventosActualizados)) {
+        return res.status(400).json({ error: 'La solicitud debe contener un arreglo de eventos actualizados.' });
+    }
+
+    const updateQueries = eventosActualizados.map((evento) => {
+        return new Promise((resolve, reject) => {
+            const evento_id = evento.evento_id;
+            delete evento.evento_id; // Eliminamos el campo evento_id para evitar que se actualice en la base de datos
+            req.getConnection((err, conn) => {
+                if (err) return reject(err);
+
+                conn.query('UPDATE eventos SET ? WHERE evento_id = ?', [evento, evento_id], (err, result) => {
+                    if (err) return reject(err);
+                    resolve(result);
+                });
+            });
+        });
+    });
+
+    Promise.all(updateQueries)
+        .then(() => {
+            res.json({ message: 'Eventos actualizados correctamente.' });
+        })
+        .catch((error) => {
+            console.error('Error al actualizar eventos', error);
+            res.status(500).json({ error: 'Ocurrió un error al actualizar los eventos.' });
+        });
+});
+
 
 
 
