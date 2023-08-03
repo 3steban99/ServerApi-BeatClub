@@ -33,7 +33,7 @@ app.get('/Productos', (req, res) => {
     req.getConnection((err, conn) => {
         if (err) return res.send(err)
 
-        conn.query('SELECT p.producto_id, p.nombre, p.precio, p.descripcion, p.categoria_id, p.imagen_url, c.nombre AS categoria_nombre FROM productos p LEFT JOIN categorias c ON p.categoria_id = c.categoria_id ORDER BY c.categoria_id', (err, rows) => {
+        conn.query('SELECT p.producto_id, p.nombre, p.precio, p.descripcion, p.categoria_id, p.imagen_url, c.nombre AS categoria_nombre, c.imagen_url AS categoria_imagen_url FROM productos p LEFT JOIN categorias c ON p.categoria_id = c.categoria_id ORDER BY c.categoria_id', (err, rows) => {
             if (err) return res.send(err)
             res.json(rows)
         })
@@ -241,7 +241,9 @@ app.get('/Productos/Postres', (req, res) => {
 
 
 
-//ruta de categorias
+//RUTA DE CATEGORIAS
+
+//Ruta para ver categorias
 
 app.get('/Categorias', (req, res) => {
     req.getConnection((err, conn) => {
@@ -254,6 +256,48 @@ app.get('/Categorias', (req, res) => {
     })
 })
 
+//Ruta para borrar categorias
+
+app.delete('/Categorias/:id', (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) return res.send(err)
+
+        conn.query('DELETE FROM categorias WHERE categoria_id = ?', [req.params.id], (err, rows) => {
+            if (err) return res.send(err)
+
+            res.send(rows)
+        })
+    })
+})
+
+
+//Ruta para crear una categoria
+
+app.post('/Categorias', (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) return res.send(err)
+
+        conn.query('INSERT INTO categorias set ?', [req.body], (err, rows) => {
+            if (err) return res.send(err)
+
+            res.send(rows)
+        })
+    })
+})
+
+//Ruta para modificar categoria
+
+app.put('/Categorias/:id', (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) return res.send(err)
+
+        conn.query('UPDATE categorias set ? WHERE categoria_id = ?', [req.body, req.params.id], (err, rows) => {
+            if (err) return res.send(err)
+
+            res.send(rows)
+        })
+    })
+})
 
 //RUTAS DE PRODUCTOS
 
@@ -403,6 +447,7 @@ app.put('/Eventos/:id', (req, res) => {
         })
     })
 })
+
 
 //RUTA PARA VERIFICAR CUENTA
 
